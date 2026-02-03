@@ -80,40 +80,30 @@ I’ve shipped multiple live mobile app versions with major functional and archi
 // ============================================
 export const skills: Skill[] = [
   // Frontend
-  { name: "React", category: "frontend" },
-  { name: "Next.js", category: "frontend" },
+  { name: "React (Advanced)", category: "frontend" },
+  { name: "Next.js (Advanced)", category: "frontend" },
   { name: "TypeScript", category: "frontend" },
-  { name: "JavaScript", category: "frontend" },
-  { name: "Redux", category: "frontend" },
-  { name: "Zustand", category: "frontend" },
-  { name: "HTML/CSS", category: "frontend" },
-  { name: "Figma → Pixel-Perfect UI", category: "frontend" },
+  { name: "Complex State: Redux", category: "frontend" },
+  { name: "Complex State: Zustand", category: "frontend" },
+  { name: "Performance Optimization", category: "frontend" },
+  { name: "Maintainable Component Architecture", category: "frontend" },
 
   // Backend
-  { name: "Node.js", category: "backend" },
-  { name: "Express", category: "backend" },
-  { name: "REST APIs", category: "backend" },
-  { name: "Zod (Runtime Validation)", category: "backend" },
+  { name: "RESTful APIs (Layered)", category: "backend" },
+  { name: "Zod Runtime Validation", category: "backend" },
   { name: "C# / ASP.NET Core", category: "backend" },
 
   // Mobile
-  { name: "React Native", category: "mobile" },
+  { name: "React Native (TypeScript)", category: "mobile" },
   { name: "Expo", category: "mobile" },
   { name: "Mobile Payments & Subscriptions", category: "mobile" },
 
   // Database
-  { name: "Prisma", category: "database" },
+  { name: "Prisma ORM", category: "database" },
   { name: "PostgreSQL", category: "database" },
   { name: "MariaDB", category: "database" },
   { name: "Schema Design & Migrations", category: "database" },
-
-  // DevOps / Workflow
-  { name: "Git", category: "devops" },
-
-  // Other
-  { name: "Data Scraping & Ingestion", category: "other" },
-  { name: "Production Debugging w/ Customers", category: "other" },
-  { name: "System & Business Logic Analysis", category: "other" },
+  { name: "Query Optimization", category: "database" },
 ];
 
 // ============================================

@@ -1,18 +1,71 @@
 "use client";
 
-import { InfiniteMovingCards } from "@/components/ui/InfiniteMovingCards";
+import ExpandableCardDemo, {
+  ExpandableCard,
+} from "@/components/expandable-card-demo-grid";
 import { skills } from "@/data/portfolio";
 import { motion } from "framer-motion";
 
-export const SkillsSection = () => {
-  // Map skills to include visual representation
-  const skillItems = skills.map((skill) => ({
-    name: skill.name,
-  }));
+const categoryImages: Record<string, string> = {
+  frontend:
+    "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=80",
+  backend:
+    "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+  mobile:
+    "https://images.unsplash.com/photo-1481277542470-605612bd2d61?auto=format&fit=crop&w=1200&q=80",
+  database:
+    "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80",
+  devops:
+    "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80",
+  other:
+    "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
+};
 
-  // Split skills into two rows for visual variety
-  const firstRow = skillItems.slice(0, Math.ceil(skillItems.length / 2));
-  const secondRow = skillItems.slice(Math.ceil(skillItems.length / 2));
+const buildCards = (): ExpandableCard[] => {
+  const byCategory = skills.reduce<Record<string, string[]>>((acc, skill) => {
+    acc[skill.category] = acc[skill.category] || [];
+    acc[skill.category].push(skill.name);
+    return acc;
+  }, {});
+
+  const order: Array<keyof typeof byCategory> = [
+    "frontend",
+    "backend",
+    "mobile",
+    "database",
+    "devops",
+    "other",
+  ];
+
+  return order
+    .filter((category) => byCategory[category]?.length)
+    .map((category) => {
+      const techList = byCategory[category];
+      const title = `${category.charAt(0).toUpperCase()}${category.slice(1)}`;
+      return {
+        title,
+        description: `${techList.length} tools in ${title}`,
+        src: categoryImages[category] ?? categoryImages.other,
+        ctaText: "Let\'s talk",
+        ctaLink: "#contact",
+        content: () => (
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+            {techList.map((tech) => (
+              <li
+                key={tech}
+                className="px-3 py-2 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-100"
+              >
+                {tech}
+              </li>
+            ))}
+          </ul>
+        ),
+      } satisfies ExpandableCard;
+    });
+};
+
+export const SkillsSection = () => {
+  const cards = buildCards();
 
   return (
     <section className="py-20 bg-neutral-50 dark:bg-neutral-950" id="skills">
@@ -32,43 +85,14 @@ export const SkillsSection = () => {
           </p>
         </motion.div>
 
-        <div className="flex flex-col gap-4">
-          <InfiniteMovingCards
-            items={firstRow}
-            direction="right"
-            speed="slow"
-          />
-          <InfiniteMovingCards
-            items={secondRow}
-            direction="left"
-            speed="slow"
-          />
-        </div>
-
-        {/* Skill Categories */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
           viewport={{ once: true }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
+          className="mt-10"
         >
-          {[
-            { name: "Frontend", count: skills.filter((s) => s.category === "frontend").length },
-            { name: "Backend", count: skills.filter((s) => s.category === "backend").length },
-            { name: "Mobile", count: skills.filter((s) => s.category === "mobile").length },
-            { name: "Database", count: skills.filter((s) => s.category === "database").length },
-            { name: "DevOps", count: skills.filter((s) => s.category === "devops").length },
-            { name: "Other", count: skills.filter((s) => s.category === "other").length },
-          ].map((category) => (
-            <div
-              key={category.name}
-              className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg p-4 text-center shadow-sm"
-            >
-              <p className="text-2xl font-bold text-neutral-900 dark:text-white">{category.count}</p>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400">{category.name}</p>
-            </div>
-          ))}
+          <ExpandableCardDemo cards={cards} />
         </motion.div>
       </div>
     </section>
