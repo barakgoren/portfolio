@@ -1,14 +1,13 @@
 "use client";
 
-import { MovingBorder, Button } from "@/components/ui/MovingBorder";
+import { MovingBorder } from "@/components/ui/MovingBorder";
 import { personalInfo } from "@/data/portfolio";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, MapPin, Send, Twitter } from "lucide-react";
-import Link from "next/link";
+import { Mail, MapPin, Send } from "lucide-react";
 
 export const ContactSection = () => {
   return (
-    <section className="py-20 bg-neutral-50 dark:bg-neutral-950" id="contact">
+    <section className="py-10 bg-neutral-50 dark:bg-neutral-950" id="contact">
       <div className="max-w-7xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -89,11 +88,13 @@ export const ContactSection = () => {
             </MovingBorder>
 
             {personalInfo.resumeUrl && (
-              <Link href={personalInfo.resumeUrl} target="_blank" className="w-full">
-                <Button variant="outline" className="w-full py-3">
-                  Download Resume
-                </Button>
-              </Link>
+              <a
+                href={personalInfo.resumeUrl}
+                download
+                className="w-full inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 border border-neutral-300 dark:border-neutral-700 bg-transparent text-neutral-700 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+              >
+                Download Resume
+              </a>
             )}
           </motion.div>
         </div>

@@ -6,12 +6,13 @@ import { getFeaturedProjects } from "@/data/portfolio";
 import { motion } from "framer-motion";
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
+import { BackgroundRippleEffect } from "../ui/background-ripple-effect";
 
 export const ProjectsSection = () => {
   const featuredProjects = getFeaturedProjects();
 
   return (
-    <section className="py-20 bg-white dark:bg-black" id="projects">
+    <section className="py-10 bg-white dark:bg-black" id="projects">
       <div className="max-w-7xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -21,10 +22,11 @@ export const ProjectsSection = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-neutral-700 to-neutral-400 dark:from-neutral-200 dark:to-neutral-500">
-            Featured Projects
+            Personal Projects
           </h2>
           <p className="mt-4 text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-            A selection of projects that showcase my expertise in building modern, scalable applications.
+            A selection of projects that showcase my expertise in building
+            modern, scalable applications.
           </p>
         </motion.div>
 
@@ -100,7 +102,7 @@ const ProjectHeader = ({
     <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 to-neutral-300 dark:from-neutral-900 dark:to-neutral-800 relative overflow-hidden group">
       {/* Placeholder gradient background - replace with actual images */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20" />
-      
+
       {/* Technology tags */}
       <div className="absolute bottom-2 left-2 flex flex-wrap gap-1">
         {technologies.slice(0, 3).map((tech) => (

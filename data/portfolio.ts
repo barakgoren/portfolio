@@ -67,7 +67,7 @@ I specialize in React and Next.js with TypeScript, building maintainable compone
 
 I’ve shipped multiple live mobile app versions with major functional and architectural changes, implemented payments/subscriptions in production, and delivered features for large-scale systems serving hundreds of thousands of users.`,
   avatarUrl: "/avatar.jpg",
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "/files/barak-goren-dev-2026.pdf",
   socialLinks: {
     // Update these to your real URLs if needed
     github: "https://github.com/barakgoren",

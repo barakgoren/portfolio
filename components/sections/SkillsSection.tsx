@@ -5,16 +5,13 @@ import ExpandableCardDemo, {
 } from "@/components/expandable-card-demo-grid";
 import { skills } from "@/data/portfolio";
 import { motion } from "framer-motion";
+import { BackgroundRippleEffect } from "../ui/background-ripple-effect";
 
 const categoryImages: Record<string, string> = {
-  frontend:
-    "./images/web.png",
-  backend:
-    "./images/backend.png",
-  mobile:
-    "./images/list-share.png",
-  database:
-    "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80",
+  frontend: "./images/web.png",
+  backend: "./images/backend.png",
+  mobile: "./images/list-share.png",
+  database: "./images/dbs.png",
   devops:
     "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80",
   other:
@@ -49,7 +46,7 @@ const buildCards = (): ExpandableCard[] => {
         ctaText: "Let\'s talk",
         ctaLink: "#contact",
         content: () => (
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+          <ul className="grid grid-cols-2 sm:grid-cols-2 gap-2 text-sm">
             {techList.map((tech) => (
               <li
                 key={tech}
@@ -68,7 +65,7 @@ export const SkillsSection = () => {
   const cards = buildCards();
 
   return (
-    <section className="py-20 bg-neutral-50 dark:bg-neutral-950" id="skills">
+    <section className="py-10 bg-neutral-50 dark:bg-neutral-950" id="skills">
       <div className="max-w-7xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -81,7 +78,8 @@ export const SkillsSection = () => {
             Skills & Technologies
           </h2>
           <p className="mt-4 text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-            A comprehensive toolkit built over years of hands-on experience with modern web, mobile, and backend technologies.
+            A comprehensive toolkit built over years of hands-on experience with
+            modern web, mobile, and backend technologies.
           </p>
         </motion.div>
 
