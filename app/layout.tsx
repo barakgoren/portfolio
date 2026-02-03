@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     siteName: "Barak Goren Portfolio",
     title: "Barak Goren | Software Engineer",
     description:
-      "Software engineer specializing in full-stack web development, mobile applications, and backend systems.",
+      "Software engineer specializing in full-stack web development, mobile applications, and backend systems. ",
     images: [
       {
         url: "/og-image.png",
