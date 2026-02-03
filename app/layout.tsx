@@ -17,11 +17,11 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://barakgoren.dev"),
   title: {
-    default: "Barak Goren | Senior Software Engineer",
+    default: "Barak Goren | Software Engineer",
     template: "%s | Barak Goren",
   },
   description:
-    "Senior Software Engineer specializing in full-stack web development, mobile applications, and backend systems. Expert in React, Node.js, TypeScript, and React Native.",
+    "Software engineer specializing in full-stack web development, mobile applications, and backend systems. Experienced with React, Node.js, TypeScript, and React Native.",
   keywords: [
     "Software Engineer",
     "Full Stack Developer",
@@ -34,28 +34,33 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Barak Goren" }],
   creator: "Barak Goren",
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://barakgoren.dev",
     siteName: "Barak Goren Portfolio",
-    title: "Barak Goren | Senior Software Engineer",
+    title: "Barak Goren | Software Engineer",
     description:
-      "Senior Software Engineer specializing in full-stack web development, mobile applications, and backend systems.",
+      "Software engineer specializing in full-stack web development, mobile applications, and backend systems.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Barak Goren - Senior Software Engineer",
+        alt: "Barak Goren - Software Engineer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Barak Goren | Senior Software Engineer",
+    title: "Barak Goren | Software Engineer",
     description:
-      "Senior Software Engineer specializing in full-stack web development, mobile applications, and backend systems.",
+      "Software engineer specializing in full-stack web development, mobile applications, and backend systems.",
     images: ["/og-image.png"],
   },
   robots: {
