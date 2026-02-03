@@ -10,7 +10,7 @@ import { BackgroundRippleEffect } from "../ui/background-ripple-effect";
 const categoryImages: Record<string, string> = {
   frontend: "./images/web.png",
   backend: "./images/backend.png",
-  mobile: "./images/list-share.png",
+  mobile: "./images/list-share.PNG",
   database: "./images/dbs.png",
   devops:
     "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80",
