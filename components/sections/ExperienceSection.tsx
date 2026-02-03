@@ -1,0 +1,68 @@
+"use client";
+
+import { Timeline } from "@/components/ui/Timeline";
+import { experiences } from "@/data/portfolio";
+import { motion } from "framer-motion";
+
+export const ExperienceSection = () => {
+  const timelineData = experiences.map((exp) => ({
+    title: exp.startDate + (exp.endDate !== "Present" ? ` - ${exp.endDate}` : " - Present"),
+    content: (
+      <div className="space-y-4">
+        <div>
+          <h4 className="text-xl md:text-2xl font-bold text-white">{exp.role}</h4>
+          <p className="text-neutral-400 text-lg">{exp.company}</p>
+        </div>
+        <p className="text-neutral-300 text-sm md:text-base">{exp.description}</p>
+        
+        {/* Achievements */}
+        <ul className="space-y-2">
+          {exp.achievements.map((achievement, idx) => (
+            <li
+              key={idx}
+              className="flex items-start gap-2 text-neutral-400 text-sm"
+            >
+              <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-blue-500 flex-shrink-0" />
+              {achievement}
+            </li>
+          ))}
+        </ul>
+
+        {/* Technologies */}
+        <div className="flex flex-wrap gap-2 pt-2">
+          {exp.technologies.map((tech) => (
+            <span
+              key={tech}
+              className="px-3 py-1 text-xs bg-neutral-800 rounded-full text-neutral-300"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
+    ),
+  }));
+
+  return (
+    <section className="py-20 bg-white dark:bg-neutral-950" id="experience">
+      <div className="max-w-7xl mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-neutral-700 to-neutral-400 dark:from-neutral-200 dark:to-neutral-500">
+            Experience
+          </h2>
+          <p className="mt-4 text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+            My professional journey building impactful software solutions.
+          </p>
+        </motion.div>
+
+        <Timeline data={timelineData} />
+      </div>
+    </section>
+  );
+};

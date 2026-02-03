@@ -1,0 +1,127 @@
+"use client";
+
+import { BentoGrid, BentoGridItem } from "@/components/ui/BentoGrid";
+import { Button } from "@/components/ui/MovingBorder";
+import { getFeaturedProjects } from "@/data/portfolio";
+import { motion } from "framer-motion";
+import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import Link from "next/link";
+
+export const ProjectsSection = () => {
+  const featuredProjects = getFeaturedProjects();
+
+  return (
+    <section className="py-20 bg-black" id="projects">
+      <div className="max-w-7xl mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-neutral-200 to-neutral-500">
+            Featured Projects
+          </h2>
+          <p className="mt-4 text-neutral-400 max-w-2xl mx-auto">
+            A selection of projects that showcase my expertise in building modern, scalable applications.
+          </p>
+        </motion.div>
+
+        <BentoGrid className="max-w-6xl mx-auto">
+          {featuredProjects.map((project, i) => (
+            <BentoGridItem
+              key={project.id}
+              title={project.title}
+              description={project.description}
+              header={
+                <ProjectHeader
+                  image={project.image}
+                  title={project.title}
+                  technologies={project.technologies}
+                />
+              }
+              className={i === 0 ? "md:col-span-2" : ""}
+              icon={
+                <div className="flex gap-2 mt-2">
+                  {project.liveUrl && (
+                    <Link
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-1.5 rounded-md bg-neutral-800 hover:bg-neutral-700 transition-colors"
+                    >
+                      <ExternalLink className="h-4 w-4 text-neutral-400" />
+                    </Link>
+                  )}
+                  {project.githubUrl && (
+                    <Link
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-1.5 rounded-md bg-neutral-800 hover:bg-neutral-700 transition-colors"
+                    >
+                      <Github className="h-4 w-4 text-neutral-400" />
+                    </Link>
+                  )}
+                </div>
+              }
+            />
+          ))}
+        </BentoGrid>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="flex justify-center mt-12"
+        >
+          <Link href="/projects">
+            <Button variant="outline" className="group">
+              View All Projects
+              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </Link>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+const ProjectHeader = ({
+  technologies,
+}: {
+  image: string;
+  title: string;
+  technologies: string[];
+}) => {
+  return (
+    <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-900 to-neutral-800 relative overflow-hidden group">
+      {/* Placeholder gradient background - replace with actual images */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20" />
+      
+      {/* Technology tags */}
+      <div className="absolute bottom-2 left-2 flex flex-wrap gap-1">
+        {technologies.slice(0, 3).map((tech) => (
+          <span
+            key={tech}
+            className="px-2 py-0.5 text-xs bg-black/50 backdrop-blur-sm rounded text-neutral-300"
+          >
+            {tech}
+          </span>
+        ))}
+        {technologies.length > 3 && (
+          <span className="px-2 py-0.5 text-xs bg-black/50 backdrop-blur-sm rounded text-neutral-400">
+            +{technologies.length - 3}
+          </span>
+        )}
+      </div>
+
+      {/* Hover overlay */}
+      <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+        <span className="text-white font-medium">View Project</span>
+      </div>
+    </div>
+  );
+};
