@@ -15,7 +15,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://barakgoren.dev"),
+  // Use the live domain so Open Graph resolves absolute asset URLs correctly.
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://www.barak-dev.com"),
   title: {
     default: "Barak Goren | Software Engineer",
     template: "%s | Barak Goren",
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://barakgoren.dev",
+    url: "https://www.barak-dev.com",
     siteName: "Barak Goren Portfolio",
     title: "Barak Goren | Software Engineer",
     description:
@@ -50,8 +51,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/og-image.png",
-        width: 800,
-        height: 800,
+        width: 1200,
+        height: 630,
         alt: "Barak Goren - Software Engineer",
       },
     ],
