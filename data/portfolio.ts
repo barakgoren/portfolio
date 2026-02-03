@@ -24,6 +24,7 @@ export interface Skill {
 export interface Experience {
   id: string;
   company: string;
+  icon?: string;
   role: string;
   startDate: string;
   endDate: string | "Present";
@@ -55,23 +56,22 @@ export interface PersonalInfo {
 // ============================================
 export const personalInfo: PersonalInfo = {
   name: "Barak Goren",
-  title: "Senior Software Engineer",
-  email: "contact@barakgoren.dev",
-  location: "Israel",
+  title: "Full Stack Developer (Front-end Focus)",
+  email: "barak.goren6@gmail.com",
+  location: "Mazkeret Batya, Israel",
   shortBio:
-    "Senior Software Engineer specializing in full-stack development, mobile applications, and scalable backend systems.",
-  bio: `I'm a passionate Senior Software Engineer with extensive experience in building modern web applications, 
-mobile apps, and robust backend systems. I specialize in React, TypeScript, Node.js, and React Native, 
-with a strong focus on creating performant, scalable, and maintainable solutions.
+    "Full Stack Developer with strong front-end expertise, building scalable, production-grade web and mobile systems.",
+  bio: `I'm a Full Stack Developer with a strong front-end focus, working in production environments across web and mobile.
 
-Throughout my career, I've worked on diverse projects ranging from startup MVPs to enterprise-scale applications, 
-always striving to deliver exceptional user experiences while maintaining clean, efficient code.`,
+I specialize in React and Next.js with TypeScript, building maintainable component architectures, optimizing performance, and handling complex state at scale (Redux / Zustand). On the backend side, I build and maintain REST APIs and data flows, enforce runtime validation with Zod, and work hands-on with Prisma and relational databases (PostgreSQL / MariaDB) including schema design, migrations, and query optimization.
+
+I’ve shipped multiple live mobile app versions with major functional and architectural changes, implemented payments/subscriptions in production, and delivered features for large-scale systems serving hundreds of thousands of users.`,
   avatarUrl: "/avatar.jpg",
   resumeUrl: "/resume.pdf",
   socialLinks: {
+    // Update these to your real URLs if needed
     github: "https://github.com/barakgoren",
     linkedin: "https://linkedin.com/in/barakgoren",
-    twitter: "https://twitter.com/barakgoren",
   },
 };
 
@@ -84,130 +84,104 @@ export const skills: Skill[] = [
   { name: "Next.js", category: "frontend" },
   { name: "TypeScript", category: "frontend" },
   { name: "JavaScript", category: "frontend" },
-  { name: "Tailwind CSS", category: "frontend" },
-  { name: "HTML/CSS", category: "frontend" },
   { name: "Redux", category: "frontend" },
-  { name: "Framer Motion", category: "frontend" },
+  { name: "Zustand", category: "frontend" },
+  { name: "HTML/CSS", category: "frontend" },
+  { name: "Figma → Pixel-Perfect UI", category: "frontend" },
 
   // Backend
   { name: "Node.js", category: "backend" },
   { name: "Express", category: "backend" },
-  { name: "NestJS", category: "backend" },
-  { name: "Python", category: "backend" },
   { name: "REST APIs", category: "backend" },
-  { name: "GraphQL", category: "backend" },
+  { name: "Zod (Runtime Validation)", category: "backend" },
+  { name: "C# / ASP.NET Core", category: "backend" },
 
   // Mobile
   { name: "React Native", category: "mobile" },
   { name: "Expo", category: "mobile" },
-  { name: "iOS", category: "mobile" },
-  { name: "Android", category: "mobile" },
+  { name: "Mobile Payments & Subscriptions", category: "mobile" },
 
   // Database
-  { name: "PostgreSQL", category: "database" },
-  { name: "MongoDB", category: "database" },
-  { name: "Redis", category: "database" },
   { name: "Prisma", category: "database" },
+  { name: "PostgreSQL", category: "database" },
+  { name: "MariaDB", category: "database" },
+  { name: "Schema Design & Migrations", category: "database" },
 
-  // DevOps
-  { name: "Docker", category: "devops" },
-  { name: "AWS", category: "devops" },
-  { name: "CI/CD", category: "devops" },
+  // DevOps / Workflow
   { name: "Git", category: "devops" },
-  { name: "Vercel", category: "devops" },
 
   // Other
-  { name: "Agile/Scrum", category: "other" },
-  { name: "System Design", category: "other" },
-  { name: "Testing", category: "other" },
+  { name: "Data Scraping & Ingestion", category: "other" },
+  { name: "Production Debugging w/ Customers", category: "other" },
+  { name: "System & Business Logic Analysis", category: "other" },
 ];
 
 // ============================================
 // PROJECTS
+// (Resume-aligned: based on shipped production work described there)
 // ============================================
 export const projects: Project[] = [
   {
-    id: "project-1",
-    title: "E-Commerce Platform",
+    id: "oversight-prod-systems",
+    title: "Large-Scale Production Systems",
     description:
-      "A full-stack e-commerce solution with real-time inventory, payment processing, and admin dashboard.",
-    longDescription: `Built a comprehensive e-commerce platform featuring real-time inventory management, 
-secure payment processing with Stripe, and a powerful admin dashboard. The platform handles thousands 
-of daily transactions with 99.9% uptime.`,
-    image: "/projects/ecommerce.jpg",
-    technologies: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Stripe", "Redis"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com/barakgoren/ecommerce",
+      "Delivered end-to-end features for high-traffic production systems serving 300,000+ users and generating 1,000+ leads/month.",
+    longDescription: `Built and shipped complex product features across frontend and backend layers in production environments.
+Worked through challenging business logic and system edge cases, including customer-facing debugging and solution design.`,
+    image: "/projects/production-systems.jpg",
+    technologies: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Redux",
+      "Zustand",
+      "Prisma",
+      "PostgreSQL/MariaDB",
+      "Zod",
+    ],
     featured: true,
     category: "fullstack",
   },
   {
-    id: "project-2",
-    title: "Mobile Banking App",
+    id: "mobile-app-shipping",
+    title: "Mobile App Shipping & Architecture Changes",
     description:
-      "A secure mobile banking application with biometric authentication and real-time transactions.",
-    longDescription: `Developed a cross-platform mobile banking application with biometric authentication, 
-real-time transaction tracking, and push notifications. Implemented robust security measures 
-including encryption and secure API communication.`,
-    image: "/projects/banking.jpg",
-    technologies: ["React Native", "TypeScript", "Node.js", "MongoDB", "Firebase"],
+      "Shipped multiple versions of live mobile apps with major functional and architectural changes for 2,000+ active users.",
+    longDescription: `Owned and delivered production mobile updates end-to-end, including UI implementation, state management, validation,
+and release execution of large changes while keeping stability for active users.`,
+    image: "/projects/mobile-shipping.jpg",
+    technologies: [
+      "React Native",
+      "TypeScript",
+      "Expo",
+      "Zustand",
+      "Zod",
+      "Payments/Subscriptions",
+    ],
     featured: true,
     category: "mobile",
   },
   {
-    id: "project-3",
-    title: "Real-time Collaboration Tool",
+    id: "data-migration-ingestion",
+    title: "Data Migration: Scraping & Ingestion Pipeline",
     description:
-      "A collaborative workspace with real-time document editing, video calls, and team management.",
-    longDescription: `Created a real-time collaboration platform similar to Notion meets Zoom. 
-Features include live document co-editing, video conferencing, task management, 
-and team workspace organization.`,
-    image: "/projects/collaboration.jpg",
-    technologies: ["React", "TypeScript", "WebSocket", "WebRTC", "PostgreSQL"],
-    liveUrl: "https://example.com",
-    featured: true,
-    category: "web",
-  },
-  {
-    id: "project-4",
-    title: "Microservices API Gateway",
-    description:
-      "A scalable API gateway handling authentication, rate limiting, and service orchestration.",
-    longDescription: `Architected and built a high-performance API gateway for microservices architecture. 
-Handles JWT authentication, rate limiting, request routing, and service discovery 
-with support for millions of daily requests.`,
-    image: "/projects/api-gateway.jpg",
-    technologies: ["Node.js", "Docker", "Kubernetes", "Redis", "PostgreSQL"],
-    githubUrl: "https://github.com/barakgoren/api-gateway",
+      "Performed large-scale data scraping and ingestion to migrate substantial datasets into new database systems with complex transformations.",
+    longDescription: `Implemented ingestion flows that handled data transformation, integrity constraints, and migration into new database schemas.
+Focused on correctness, consistency, and reliability under real-world messy data.`,
+    image: "/projects/data-migration.jpg",
+    technologies: ["Node.js", "TypeScript", "Prisma", "PostgreSQL/MariaDB"],
     featured: false,
     category: "backend",
   },
   {
-    id: "project-5",
-    title: "Health & Fitness Tracker",
+    id: "pixel-perfect-ui",
+    title: "Pixel-Accurate UI Implementation",
     description:
-      "A mobile app for tracking workouts, nutrition, and health metrics with AI-powered insights.",
-    longDescription: `Built a comprehensive health tracking mobile app with workout logging, 
-nutrition tracking, sleep analysis, and AI-powered health insights. 
-Integrates with wearable devices and health APIs.`,
-    image: "/projects/fitness.jpg",
-    technologies: ["React Native", "TypeScript", "Python", "TensorFlow", "Firebase"],
-    liveUrl: "https://example.com",
-    featured: false,
-    category: "mobile",
-  },
-  {
-    id: "project-6",
-    title: "Developer Portfolio Template",
-    description:
-      "An open-source, customizable portfolio template for developers with modern animations.",
-    longDescription: `Created this very portfolio template as an open-source project. 
-Features modern animations, dark/light mode, SEO optimization, 
-and easy customization through a single data file.`,
-    image: "/projects/portfolio.jpg",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    liveUrl: "https://barakgoren.dev",
-    githubUrl: "https://github.com/barakgoren/portfolio",
+      "Implemented pixel-perfect interfaces from detailed Figma designs, ensuring strict adherence to client requirements.",
+    longDescription: `Delivered high-precision UI work across production applications, translating design specs into clean, maintainable components
+while keeping performance and scalability in mind.`,
+    image: "/projects/pixel-perfect-ui.jpg",
+    technologies: ["React", "Next.js", "TypeScript", "HTML/CSS"],
     featured: false,
     category: "web",
   },
@@ -218,52 +192,54 @@ and easy customization through a single data file.`,
 // ============================================
 export const experiences: Experience[] = [
   {
-    id: "exp-1",
-    company: "Tech Company",
-    role: "Senior Software Engineer",
-    startDate: "2023",
+    id: "exp-oversight",
+    company: "Oversight Group",
+    icon: "/logos/oversight-logo.png",
+    role: "Full Stack Developer",
+    startDate: "October 2024",
     endDate: "Present",
     description:
-      "Leading development of core platform features and mentoring junior developers.",
+      "End-to-end feature development across web and mobile applications in production environments.",
     achievements: [
-      "Led migration of legacy system to modern microservices architecture",
-      "Reduced API response times by 60% through optimization",
-      "Mentored team of 5 junior developers",
-      "Implemented CI/CD pipeline reducing deployment time by 80%",
+      "Shipped multiple major app versions with functional and architectural changes to live mobile apps serving 2,000+ active users",
+      "Delivered complex features to production systems serving 300,000+ users and handling 1,000+ leads/month",
+      "Performed large-scale data scraping and ingestion to migrate substantial datasets into new database systems, including complex transformations and integrity constraints",
+      "Analyzed complex system and business logic issues directly with customers and designed technical solutions to meet requirements",
+      "Implemented pixel-accurate UI from detailed Figma designs with strict adherence to design requirements",
     ],
-    technologies: ["React", "TypeScript", "Node.js", "PostgreSQL", "AWS"],
+    technologies: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Redux",
+      "Zustand",
+      "React Native",
+      "Expo",
+      "Node.js",
+      "Prisma",
+      "PostgreSQL",
+      "MariaDB",
+      "Zod",
+      "C#",
+      "ASP.NET Core",
+    ],
   },
   {
-    id: "exp-2",
-    company: "Startup Inc",
-    role: "Full Stack Developer",
-    startDate: "2021",
-    endDate: "2023",
+    id: "exp-oversight-1",
+    company: "Oversight Group",
+    icon: "/logos/oversight-logo.png",
+    role: "QA Engineer",
+    startDate: "July",
+    endDate: "October 2024",
     description:
-      "Built and maintained multiple web and mobile applications from scratch.",
+      "Conducted manual testing and quality assurance for web systems and applications to ensure reliability and performance prior to production releases.",
     achievements: [
-      "Developed MVP that secured $2M in seed funding",
-      "Built cross-platform mobile app with 50K+ downloads",
-      "Implemented real-time features using WebSocket",
-      "Optimized database queries improving performance by 40%",
+      "Performed comprehensive manual testing on web systems and applications, including identification of complex issues.",
+      "Accurately documented bugs, reproduction steps, and impact analysis.",
+      "Collaborated closely with developers to validate fixes and ensure system stability prior to production releases.",
+      "Contributed to improving quality processes and reducing recurring issues.",
     ],
-    technologies: ["React Native", "Next.js", "Node.js", "MongoDB", "Firebase"],
-  },
-  {
-    id: "exp-3",
-    company: "Digital Agency",
-    role: "Frontend Developer",
-    startDate: "2019",
-    endDate: "2021",
-    description:
-      "Developed responsive web applications for various clients across industries.",
-    achievements: [
-      "Delivered 20+ client projects on time and within budget",
-      "Introduced component library reducing development time by 30%",
-      "Improved website performance scores from 60 to 95+",
-      "Led adoption of TypeScript across the team",
-    ],
-    technologies: ["React", "TypeScript", "Vue.js", "SCSS", "GraphQL"],
+    technologies: [],
   },
 ];
 
@@ -281,6 +257,7 @@ export const navigation = [
 // HELPER FUNCTIONS
 // ============================================
 export const getFeaturedProjects = () => projects.filter((p) => p.featured);
-export const getProjectBySlug = (slug: string) => projects.find((p) => p.id === slug);
+export const getProjectBySlug = (slug: string) =>
+  projects.find((p) => p.id === slug);
 export const getSkillsByCategory = (category: Skill["category"]) =>
   skills.filter((s) => s.category === category);

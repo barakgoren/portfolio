@@ -15,7 +15,7 @@ export const SkillsSection = () => {
   const secondRow = skillItems.slice(Math.ceil(skillItems.length / 2));
 
   return (
-    <section className="py-20 bg-neutral-950" id="skills">
+    <section className="py-20 bg-neutral-50 dark:bg-neutral-950" id="skills">
       <div className="max-w-7xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -24,10 +24,10 @@ export const SkillsSection = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-neutral-200 to-neutral-500">
+          <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-neutral-700 to-neutral-400 dark:from-neutral-200 dark:to-neutral-500">
             Skills & Technologies
           </h2>
-          <p className="mt-4 text-neutral-400 max-w-2xl mx-auto">
+          <p className="mt-4 text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
             A comprehensive toolkit built over years of hands-on experience with modern web, mobile, and backend technologies.
           </p>
         </motion.div>
@@ -63,10 +63,10 @@ export const SkillsSection = () => {
           ].map((category) => (
             <div
               key={category.name}
-              className="bg-neutral-900 border border-neutral-800 rounded-lg p-4 text-center"
+              className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg p-4 text-center shadow-sm"
             >
-              <p className="text-2xl font-bold text-white">{category.count}</p>
-              <p className="text-sm text-neutral-400">{category.name}</p>
+              <p className="text-2xl font-bold text-neutral-900 dark:text-white">{category.count}</p>
+              <p className="text-sm text-neutral-600 dark:text-neutral-400">{category.name}</p>
             </div>
           ))}
         </motion.div>

@@ -38,64 +38,78 @@ const FloatingDockMobile = ({
 }) => {
   const [open, setOpen] = useState(false);
   return (
-    <div className={cn("relative block md:hidden", className)}>
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            layoutId="nav"
-            className="absolute bottom-full mb-2 inset-x-0 flex flex-col gap-2"
-          >
-            {items.map((item, idx) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                exit={{
-                  opacity: 0,
-                  y: 10,
-                  transition: {
-                    delay: idx * 0.05,
-                  },
-                }}
-                transition={{ delay: (items.length - 1 - idx) * 0.05 }}
-              >
-                <Link
-                  href={item.href}
-                  key={item.title}
-                  className="h-10 w-10 rounded-full bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center"
-                >
-                  <div className="h-4 w-4">{item.icon}</div>
-                </Link>
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-      <button
-        onClick={() => setOpen(!open)}
-        className="h-10 w-10 rounded-full bg-neutral-50 dark:bg-neutral-800 flex items-center justify-center"
-        aria-label="Toggle navigation menu"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="h-5 w-5 text-neutral-500 dark:text-neutral-400"
+    <div className={cn("block md:hidden", className)}>
+      <div className="flex items-center gap-3">
+        <motion.button
+          layout
+          layoutId="dock-toggle"
+          onClick={() => setOpen(!open)}
+          animate={{ x: open ? -4 : 0 }}
+          transition={{
+            type: "spring",
+            stiffness: 300,
+            damping: 24,
+          }}
+          className="h-10 w-10 rounded-full bg-neutral-50 dark:bg-neutral-800 flex items-center justify-center"
+          aria-label="Toggle navigation menu"
         >
-          <line x1="4" x2="20" y1="12" y2="12" />
-          <line x1="4" x2="20" y1="6" y2="6" />
-          <line x1="4" x2="20" y1="18" y2="18" />
-        </svg>
-      </button>
+          <motion.svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="h-5 w-5 text-neutral-500 dark:text-neutral-400"
+          >
+            <motion.line
+              animate={open ? { x1: 5, x2: 19, y1: 6, y2: 18 } : { x1: 4, x2: 20, y1: 7, y2: 7 }}
+              transition={{ type: "spring", stiffness: 260, damping: 28 }}
+            />
+            <motion.line
+              animate={open ? { opacity: 0 } : { opacity: 1, x1: 4, x2: 20, y1: 12, y2: 12 }}
+              transition={{ type: "spring", stiffness: 260, damping: 28 }}
+            />
+            <motion.line
+              animate={open ? { x1: 5, x2: 19, y1: 18, y2: 6 } : { x1: 4, x2: 20, y1: 17, y2: 17 }}
+              transition={{ type: "spring", stiffness: 260, damping: 28 }}
+            />
+          </motion.svg>
+        </motion.button>
+
+        <AnimatePresence mode="popLayout">
+          {open && (
+            <motion.div
+              layoutId="nav"
+              layout
+              initial={{ opacity: 0, x: -8 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -8 }}
+              className="flex items-center gap-2"
+            >
+              {items.map((item, idx) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 6, transition: { delay: idx * 0.05 } }}
+                  transition={{ delay: idx * 0.05 }}
+                >
+                  <Link
+                    href={item.href}
+                    className="h-10 w-10 rounded-full bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center"
+                  >
+                    <div className="h-4 w-4">{item.icon}</div>
+                  </Link>
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 };
@@ -114,7 +128,7 @@ const FloatingDockDesktop = ({
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
         "mx-auto hidden md:flex h-16 gap-4 items-end rounded-2xl bg-neutral-50 dark:bg-neutral-900 px-4 pb-3",
-        className
+        className,
       )}
     >
       {items.map((item) => (
@@ -142,21 +156,29 @@ function IconContainer({
     return val - bounds.x - bounds.width / 2;
   });
 
-  const widthTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
-  const heightTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
+  const widthTransform = useTransform(distance, [-150, 0, 150], [40, 50, 40]);
+  const heightTransform = useTransform(distance, [-150, 0, 150], [40, 50, 40]);
 
-  const widthTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
-  const heightTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
+  const widthTransformIcon = useTransform(
+    distance,
+    [-150, 0, 150],
+    [20, 30, 20],
+  );
+  const heightTransformIcon = useTransform(
+    distance,
+    [-150, 0, 150],
+    [20, 30, 20],
+  );
 
   const width = useSpring(widthTransform, {
     mass: 0.1,
     stiffness: 150,
-    damping: 12,
+    damping: 5,
   });
   const height = useSpring(heightTransform, {
     mass: 0.1,
     stiffness: 150,
-    damping: 12,
+    damping: 5,
   });
 
   const widthIcon = useSpring(widthTransformIcon, {

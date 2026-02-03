@@ -3,24 +3,44 @@
 import { Timeline } from "@/components/ui/Timeline";
 import { experiences } from "@/data/portfolio";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export const ExperienceSection = () => {
   const timelineData = experiences.map((exp) => ({
-    title: exp.startDate + (exp.endDate !== "Present" ? ` - ${exp.endDate}` : " - Present"),
+    title:
+      exp.startDate +
+      (exp.endDate !== "Present" ? ` - ${exp.endDate}` : " - Present"),
     content: (
       <div className="space-y-4">
-        <div>
-          <h4 className="text-xl md:text-2xl font-bold text-white">{exp.role}</h4>
-          <p className="text-neutral-400 text-lg">{exp.company}</p>
+        <div className="space-y-1">
+          <h4 className="text-xl md:text-2xl font-bold text-neutral-900 dark:text-white">
+            {exp.role}
+          </h4>
+          <div className="flex items-center gap-3 text-neutral-600 dark:text-neutral-400 text-lg">
+            {exp.icon && (
+              <div className="relative h-8 w-8 overflow-hidden rounded-full border border-neutral-200/60 dark:border-neutral-700/60 bg-neutral-100 dark:bg-neutral-900">
+                <Image
+                  src={exp.icon}
+                  alt={`${exp.company} logo`}
+                  fill
+                  sizes="32px"
+                  className="object-contain"
+                />
+              </div>
+            )}
+            <p>{exp.company}</p>
+          </div>
         </div>
-        <p className="text-neutral-300 text-sm md:text-base">{exp.description}</p>
-        
+        <p className="text-neutral-600 dark:text-neutral-300 text-sm md:text-base">
+          {exp.description}
+        </p>
+
         {/* Achievements */}
         <ul className="space-y-2">
           {exp.achievements.map((achievement, idx) => (
             <li
               key={idx}
-              className="flex items-start gap-2 text-neutral-400 text-sm"
+              className="flex items-start gap-2 text-neutral-600 dark:text-neutral-400 text-sm"
             >
               <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-blue-500 flex-shrink-0" />
               {achievement}
@@ -33,7 +53,7 @@ export const ExperienceSection = () => {
           {exp.technologies.map((tech) => (
             <span
               key={tech}
-              className="px-3 py-1 text-xs bg-neutral-800 rounded-full text-neutral-300"
+              className="px-3 py-1 text-xs bg-neutral-200 dark:bg-neutral-800 rounded-full text-neutral-700 dark:text-neutral-300"
             >
               {tech}
             </span>

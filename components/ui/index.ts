@@ -8,3 +8,4 @@ export { InfiniteMovingCards } from "./InfiniteMovingCards";
 export { Timeline } from "./Timeline";
 export { MovingBorder, Button } from "./MovingBorder";
 export { ThemeToggle } from "./ThemeToggle";
+export { DottedGlowBackground } from "./dotted-glow-background";

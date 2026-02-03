@@ -11,7 +11,7 @@ export const ProjectsSection = () => {
   const featuredProjects = getFeaturedProjects();
 
   return (
-    <section className="py-20 bg-black" id="projects">
+    <section className="py-20 bg-white dark:bg-black" id="projects">
       <div className="max-w-7xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -20,10 +20,10 @@ export const ProjectsSection = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-neutral-200 to-neutral-500">
+          <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-neutral-700 to-neutral-400 dark:from-neutral-200 dark:to-neutral-500">
             Featured Projects
           </h2>
-          <p className="mt-4 text-neutral-400 max-w-2xl mx-auto">
+          <p className="mt-4 text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
             A selection of projects that showcase my expertise in building modern, scalable applications.
           </p>
         </motion.div>
@@ -49,9 +49,9 @@ export const ProjectsSection = () => {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-1.5 rounded-md bg-neutral-800 hover:bg-neutral-700 transition-colors"
+                      className="p-1.5 rounded-md bg-neutral-200 hover:bg-neutral-300 dark:bg-neutral-800 dark:hover:bg-neutral-700 transition-colors"
                     >
-                      <ExternalLink className="h-4 w-4 text-neutral-400" />
+                      <ExternalLink className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
                     </Link>
                   )}
                   {project.githubUrl && (
@@ -59,9 +59,9 @@ export const ProjectsSection = () => {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-1.5 rounded-md bg-neutral-800 hover:bg-neutral-700 transition-colors"
+                      className="p-1.5 rounded-md bg-neutral-200 hover:bg-neutral-300 dark:bg-neutral-800 dark:hover:bg-neutral-700 transition-colors"
                     >
-                      <Github className="h-4 w-4 text-neutral-400" />
+                      <Github className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
                     </Link>
                   )}
                 </div>
@@ -97,7 +97,7 @@ const ProjectHeader = ({
   technologies: string[];
 }) => {
   return (
-    <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-900 to-neutral-800 relative overflow-hidden group">
+    <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 to-neutral-300 dark:from-neutral-900 dark:to-neutral-800 relative overflow-hidden group">
       {/* Placeholder gradient background - replace with actual images */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20" />
       
@@ -106,13 +106,13 @@ const ProjectHeader = ({
         {technologies.slice(0, 3).map((tech) => (
           <span
             key={tech}
-            className="px-2 py-0.5 text-xs bg-black/50 backdrop-blur-sm rounded text-neutral-300"
+            className="px-2 py-0.5 text-xs bg-white/70 dark:bg-black/50 backdrop-blur-sm rounded text-neutral-700 dark:text-neutral-300"
           >
             {tech}
           </span>
         ))}
         {technologies.length > 3 && (
-          <span className="px-2 py-0.5 text-xs bg-black/50 backdrop-blur-sm rounded text-neutral-400">
+          <span className="px-2 py-0.5 text-xs bg-white/70 dark:bg-black/50 backdrop-blur-sm rounded text-neutral-500 dark:text-neutral-400">
             +{technologies.length - 3}
           </span>
         )}

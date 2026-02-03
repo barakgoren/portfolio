@@ -47,6 +47,10 @@
   --ring: 240 5.9% 10%;
   --radius: 0.5rem;
 
+  --cell-fill-color: hsl(240 5.9% 90%);
+  /* Blue border color */
+  --cell-border-color: hsl(0, 100%, 50%);
+
   /* Accent colors */
   --gradient-start: 221 83% 53%;
   --gradient-end: 271 91% 65%;
@@ -133,3 +137,23 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--muted-foreground) / 0.5);
 }
+
+
+
+@theme inline {
+  --animate-cell-ripple: cell-ripple var(--duration, 200ms) ease-out none 1
+  var(--delay, 0ms);
+
+  @keyframes cell-ripple {
+    0% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 0.4;
+    }
+  }
+}
+

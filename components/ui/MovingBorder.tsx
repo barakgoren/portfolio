@@ -41,7 +41,7 @@ export const MovingBorder = ({
 
       <div
         className={cn(
-          "relative bg-slate-900/[0.8] border border-slate-800 backdrop-blur-xl text-white flex items-center justify-center w-full h-full text-sm antialiased",
+          "relative bg-white/80 dark:bg-slate-900/[0.8] border border-neutral-300 dark:border-slate-800 backdrop-blur-xl text-neutral-900 dark:text-white flex items-center justify-center w-full h-full text-sm antialiased",
           className
         )}
         style={{
@@ -99,8 +99,8 @@ export const Button = ({
     default:
       "bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:from-blue-600 hover:to-purple-600",
     outline:
-      "border border-neutral-700 bg-transparent text-neutral-200 hover:bg-neutral-800",
-    ghost: "bg-transparent text-neutral-200 hover:bg-neutral-800",
+      "border border-neutral-300 dark:border-neutral-700 bg-transparent text-neutral-700 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800",
+    ghost: "bg-transparent text-neutral-700 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800",
   };
 
   return (
