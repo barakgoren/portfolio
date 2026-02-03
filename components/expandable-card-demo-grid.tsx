@@ -2,7 +2,6 @@
 
 import React, { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { FocusCards } from "@/components/ui/focus-cards";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 
 type CardContent = React.ReactNode | (() => React.ReactNode);
@@ -90,7 +89,7 @@ export default function ExpandableCardDemo({
                   height={200}
                   src={active.src}
                   alt={active.title}
-                  className="w-full h-80 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg object-cover object-top"
+                  className="w-full h-96 lg:h-96 sm:rounded-tr-lg sm:rounded-tl-lg object-cover object-top"
                 />
               </motion.div>
 
@@ -141,7 +140,42 @@ export default function ExpandableCardDemo({
           </div>
         ) : null}
       </AnimatePresence>
-      <FocusCards cards={cards} />
+      <ul className="max-w-6xl mx-auto w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-start gap-4 md:gap-6">
+        {cards.map((card) => (
+          <motion.div
+            layoutId={`card-${card.title}-${id}`}
+            key={card.title}
+            onClick={() => setActive(card)}
+            className="p-3 flex flex-col hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-lg cursor-pointer"
+          >
+            <div className="flex gap-3 flex-col w-full">
+              <motion.div layoutId={`image-${card.title}-${id}`}>
+                <img
+                  width={100}
+                  height={100}
+                  src={card.src}
+                  alt={card.title}
+                  className="h-52 w-full rounded-lg object-cover object-top"
+                />
+              </motion.div>
+              <div className="flex justify-center items-center flex-col text-center">
+                <motion.h3
+                  layoutId={`title-${card.title}-${id}`}
+                  className="font-medium text-neutral-800 dark:text-neutral-200 text-sm md:text-base"
+                >
+                  {card.title}
+                </motion.h3>
+                <motion.p
+                  layoutId={`description-${card.description}-${id}`}
+                  className="text-neutral-600 dark:text-neutral-400 text-xs md:text-sm"
+                >
+                  {card.description}
+                </motion.p>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </ul>
     </>
   );
 }

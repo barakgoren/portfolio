@@ -10,7 +10,7 @@ const categoryImages: Record<string, string> = {
   frontend:
     "./images/web.png",
   backend:
-    "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+    "./images/backend.png",
   mobile:
     "./images/list-share.png",
   database:
