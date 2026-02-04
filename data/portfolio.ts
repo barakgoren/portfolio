@@ -7,7 +7,7 @@ export interface Project {
   title: string;
   description: string;
   longDescription?: string;
-  image: string;
+  image?: string;
   technologies: string[];
   liveUrl?: string;
   githubUrl?: string;
@@ -112,41 +112,56 @@ export const skills: Skill[] = [
 // ============================================
 export const projects: Project[] = [
   {
-    id: "oversight-prod-systems",
-    title: "Large-Scale Production Systems",
+    id: "smart-ats-system",
+    title: "Smart ATS Platform (Next.js + CV API)",
     description:
-      "Delivered end-to-end features for high-traffic production systems serving 300,000+ users and generating 1,000+ leads/month.",
-    longDescription: `Built and shipped complex product features across frontend and backend layers in production environments.
-Worked through challenging business logic and system edge cases, including customer-facing debugging and solution design.`,
-    image: "/projects/production-systems.jpg",
+      "Next.js App Router front-end with applicant comparisons, templates, and CV previews, powered by an Express/Mongo CV analysis API using GPT-4 and R2-backed uploads.",
+    longDescription: `Built the Smart ATS platform end-to-end: a Next.js 15 UI with applicant workspaces, template library, multi-step dialogs, and responsive theming (light/dark).
+Backed by the Express/Mongo API that handles users, companies, applications, JWT auth, Swagger docs, GPT-4 CV parsing with PDF extraction, and Cloudflare R2 uploads (single/multi, signed URLs, health checks).`,
+    image: "/images/smart-ats-hero.png",
     technologies: [
-      "React",
       "Next.js",
+      "Express",
+      "Cloudflare R2",
+      "Scalar (OpenAPI/Swagger)",
       "TypeScript",
-      "Redux",
+      "OpenAI GPT-4",
+      "SWR",
+      "React",
+      "Tailwind CSS",
       "Zustand",
-      "Prisma",
-      "PostgreSQL/MariaDB",
+      "MongoDB/Mongoose",
       "Zod",
+      "JWT",
     ],
     featured: true,
     category: "fullstack",
   },
   {
-    id: "mobile-app-shipping",
-    title: "Mobile App Shipping & Architecture Changes",
+    id: "list-share",
+    title: "List-Share (Expo App + Realtime API)",
     description:
-      "Shipped multiple versions of live mobile apps with major functional and architectural changes for 2,000+ active users.",
-    longDescription: `Owned and delivered production mobile updates end-to-end, including UI implementation, state management, validation,
-and release execution of large changes while keeping stability for active users.`,
-    image: "/projects/mobile-shipping.jpg",
+      "Expo Router mobile app with Google/Apple/email auth, realtime list collaboration, push notifications, and Cloudinary-backed media on a Prisma/Postgres API.",
+    longDescription: `Built the List-Share product: Expo 54 (React Native 0.81, React 19) app with typed routes, NativeWind/NativeBase UI, Poppins-driven design, and socket.io-client realtime presence.
+API side: Express + Prisma/PostgreSQL with socket.io events, list sharing/roles, cron cleanup, JWT-protected routes, Google/Apple sign-in, Cloudinary uploads (single/multiple, visibility/profile), and API docs via Scalar/Swagger with privacy/support public pages.`,
+    image: "/images/list-share-hero.png",
     technologies: [
+      "Expo 54",
       "React Native",
+      "Prisma",
       "TypeScript",
-      "Expo",
+      "Expo Router v6",
+      "NativeWind",
+      "NativeBase",
       "Zustand",
+      "SWR",
+      "Socket.io / socket.io-client",
+      "Express",
+      "PostgreSQL",
+      "Cloudinary",
       "Zod",
-      "Payments/Subscriptions",
+      "JWT",
+      "Swagger",
     ],
     featured: true,
     category: "mobile",
