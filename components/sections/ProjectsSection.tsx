@@ -98,13 +98,15 @@ const ProjectHeader = ({
   title,
   technologies,
 }: {
-  image: string;
+  image?: string;
   title: string;
   technologies: string[];
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const measureRef = useRef<HTMLDivElement | null>(null);
   const [maxVisible, setMaxVisible] = useState(technologies.length);
+
+  const imageSrc = image ?? "/og-image.png";
 
   useLayoutEffect(() => {
     if (!containerRef.current || !measureRef.current) return;
@@ -144,7 +146,7 @@ const ProjectHeader = ({
       {/* Project image */}
       {image ? (
         <Image
-          src={image}
+          src={imageSrc}
           alt={title}
           fill
           className="object-cover"
