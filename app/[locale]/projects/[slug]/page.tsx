@@ -1,57 +1,67 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { projects, getProjectBySlug, personalInfo } from "@/data/portfolio";
-import Link from "next/link";
+import {
+  projectsStructural,
+  getProjectStructuralBySlug,
+  personalInfo,
+} from "@/data/portfolio";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
 import { Button } from "@/components/ui/MovingBorder";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 
 interface Props {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 }
 
 export async function generateStaticParams() {
-  return projects.map((project) => ({
+  return projectsStructural.map((project) => ({
     slug: project.id,
   }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const { slug, locale } = await params;
+  const project = getProjectStructuralBySlug(slug);
+  const t = await getTranslations({ locale, namespace: "projectDetail" });
+  const td = await getTranslations({ locale, namespace: "data.projects" });
+  const tp = await getTranslations({ locale, namespace: "personalInfo" });
 
   if (!project) {
     return {
-      title: "Project Not Found",
+      title: t("projectNotFound"),
     };
   }
 
   return {
-    title: project.title,
-    description: project.description,
+    title: td(`${project.id}.title`),
+    description: td(`${project.id}.description`),
     openGraph: {
-      title: `${project.title} | ${personalInfo.name}`,
-      description: project.description,
+      title: `${td(`${project.id}.title`)} | ${tp("name")}`,
+      description: td(`${project.id}.description`),
       type: "article",
       images: [
         {
           url: project.image || "/og-image.png",
           width: 1200,
           height: 630,
-          alt: project.title,
+          alt: td(`${project.id}.title`),
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: project.title,
-      description: project.description,
+      title: td(`${project.id}.title`),
+      description: td(`${project.id}.description`),
     },
   };
 }
 
 export default async function ProjectPage({ params }: Props) {
-  const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const { slug, locale } = await params;
+  const project = getProjectStructuralBySlug(slug);
+  const t = await getTranslations({ locale, namespace: "projectDetail" });
+  const td = await getTranslations({ locale, namespace: "data.projects" });
 
   if (!project) {
     notFound();
@@ -73,7 +83,7 @@ export default async function ProjectPage({ params }: Props) {
           className="inline-flex items-center gap-2 text-neutral-400 hover:text-white transition-colors mb-8"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to Projects
+          {t("backToProjects")}
         </Link>
 
         {/* Header */}
@@ -86,15 +96,17 @@ export default async function ProjectPage({ params }: Props) {
             </span>
             {project.featured && (
               <span className="px-3 py-1 text-sm rounded-full bg-yellow-500/20 text-yellow-400 border border-yellow-500/30">
-                Featured
+                {t("featured")}
               </span>
             )}
           </div>
 
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            {project.title}
+            {td(`${project.id}.title`)}
           </h1>
-          <p className="text-xl text-neutral-400">{project.description}</p>
+          <p className="text-xl text-neutral-400">
+            {td(`${project.id}.description`)}
+          </p>
         </div>
 
         {/* Hero Image */}
@@ -105,20 +117,28 @@ export default async function ProjectPage({ params }: Props) {
         {/* Links */}
         <div className="flex flex-wrap gap-4 mb-12">
           {project.liveUrl && (
-            <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button className="px-6 py-3">
-                <ExternalLink className="h-4 w-4 mr-2" />
-                View Live Demo
+                <ExternalLink className="h-4 w-4 me-2" />
+                {t("viewLiveDemo")}
               </Button>
-            </Link>
+            </a>
           )}
           {project.githubUrl && (
-            <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button variant="outline" className="px-6 py-3">
-                <Github className="h-4 w-4 mr-2" />
-                View Source Code
+                <Github className="h-4 w-4 me-2" />
+                {t("viewSourceCode")}
               </Button>
-            </Link>
+            </a>
           )}
         </div>
 
@@ -126,10 +146,12 @@ export default async function ProjectPage({ params }: Props) {
         <div className="grid md:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="md:col-span-2">
-            <h2 className="text-2xl font-bold text-white mb-4">About this project</h2>
+            <h2 className="text-2xl font-bold text-white mb-4">
+              {t("aboutThisProject")}
+            </h2>
             <div className="prose prose-invert max-w-none">
               <p className="text-neutral-300 leading-relaxed whitespace-pre-line">
-                {project.longDescription || project.description}
+                {td(`${project.id}.longDescription`)}
               </p>
             </div>
           </div>
@@ -139,7 +161,7 @@ export default async function ProjectPage({ params }: Props) {
             {/* Technologies */}
             <div className="p-6 rounded-xl bg-neutral-900 border border-neutral-800">
               <h3 className="text-sm font-semibold text-neutral-400 uppercase tracking-wider mb-4">
-                Technologies Used
+                {t("technologiesUsed")}
               </h3>
               <div className="flex flex-wrap gap-2">
                 {project.technologies.map((tech) => (
@@ -156,9 +178,11 @@ export default async function ProjectPage({ params }: Props) {
             {/* Category Info */}
             <div className="p-6 rounded-xl bg-neutral-900 border border-neutral-800">
               <h3 className="text-sm font-semibold text-neutral-400 uppercase tracking-wider mb-4">
-                Project Type
+                {t("projectType")}
               </h3>
-              <p className="text-neutral-200 capitalize">{project.category} Development</p>
+              <p className="text-neutral-200 capitalize">
+                {project.category} {t("development")}
+              </p>
             </div>
           </div>
         </div>
@@ -166,13 +190,13 @@ export default async function ProjectPage({ params }: Props) {
         {/* CTA */}
         <div className="mt-16 p-8 rounded-2xl bg-gradient-to-br from-neutral-900 to-neutral-800 border border-neutral-700 text-center">
           <h3 className="text-xl font-bold text-white mb-2">
-            Interested in similar work?
+            {t("interestedInSimilar")}
           </h3>
           <p className="text-neutral-400 mb-6">
-            Let&apos;s discuss how I can help with your next project.
+            {t("interestedDescription")}
           </p>
           <Link href="/#contact">
-            <Button className="px-8 py-3">Get In Touch</Button>
+            <Button className="px-8 py-3">{t("getInTouch")}</Button>
           </Link>
         </div>
       </div>

@@ -9,7 +9,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useRef, useState } from "react";
 
 export const FloatingDock = ({

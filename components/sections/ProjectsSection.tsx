@@ -2,16 +2,18 @@
 
 import { BentoGrid, BentoGridItem } from "@/components/ui/BentoGrid";
 import { Button } from "@/components/ui/MovingBorder";
-import { getFeaturedProjects } from "@/data/portfolio";
+import { getFeaturedProjectsStructural } from "@/data/portfolio";
 import { motion } from "framer-motion";
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { useLayoutEffect, useRef, useState } from "react";
-import { BackgroundRippleEffect } from "../ui/background-ripple-effect";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 export const ProjectsSection = () => {
-  const featuredProjects = getFeaturedProjects();
+  const featuredProjects = getFeaturedProjectsStructural();
+  const t = useTranslations("projects");
+  const td = useTranslations("data.projects");
 
   return (
     <section className="py-10 bg-white dark:bg-black" id="projects">
@@ -24,11 +26,10 @@ export const ProjectsSection = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-neutral-700 to-neutral-400 dark:from-neutral-200 dark:to-neutral-500">
-            Latest Projects
+            {t("title")}
           </h2>
           <p className="mt-4 text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-            A selection of projects that showcase my expertise in building
-            modern, scalable applications.
+            {t("description")}
           </p>
         </motion.div>
 
@@ -36,37 +37,38 @@ export const ProjectsSection = () => {
           {featuredProjects.map((project, i) => (
             <BentoGridItem
               key={project.id}
-              title={project.title}
-              description={project.description}
+              title={td(`${project.id}.title`)}
+              description={td(`${project.id}.description`)}
               header={
                 <ProjectHeader
                   image={project.image}
-                  title={project.title}
+                  title={td(`${project.id}.title`)}
                   technologies={project.technologies}
+                  viewProjectLabel={t("viewProject")}
                 />
               }
               className={i === 0 ? "md:col-span-2" : ""}
               icon={
                 <div className="flex gap-2 mt-2">
                   {project.liveUrl && (
-                    <Link
+                    <a
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-1.5 rounded-md bg-neutral-200 hover:bg-neutral-300 dark:bg-neutral-800 dark:hover:bg-neutral-700 transition-colors"
                     >
                       <ExternalLink className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
-                    </Link>
+                    </a>
                   )}
                   {project.githubUrl && (
-                    <Link
+                    <a
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-1.5 rounded-md bg-neutral-200 hover:bg-neutral-300 dark:bg-neutral-800 dark:hover:bg-neutral-700 transition-colors"
                     >
                       <Github className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
-                    </Link>
+                    </a>
                   )}
                 </div>
               }
@@ -83,8 +85,8 @@ export const ProjectsSection = () => {
         >
           <Link href="/projects">
             <Button variant="outline" className="group">
-              View All Projects
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              {t("viewAllProjects")}
+              <ArrowRight className="ms-2 h-4 w-4 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" />
             </Button>
           </Link>
         </motion.div>
@@ -97,10 +99,12 @@ const ProjectHeader = ({
   image,
   title,
   technologies,
+  viewProjectLabel,
 }: {
   image?: string;
   title: string;
   technologies: string[];
+  viewProjectLabel: string;
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const measureRef = useRef<HTMLDivElement | null>(null);
@@ -116,7 +120,7 @@ const ProjectHeader = ({
     const calculate = () => {
       const available = containerRef.current?.clientWidth ?? 0;
       const tagNodes = Array.from(
-        measureRef.current?.children ?? [],
+        measureRef.current?.children ?? []
       ) as HTMLElement[];
       let used = 0;
       let count = 0;
@@ -180,7 +184,10 @@ const ProjectHeader = ({
       </div>
 
       {/* Hidden measurer for dynamic slicing */}
-      <div ref={measureRef} className="invisible absolute h-0 overflow-hidden">
+      <div
+        ref={measureRef}
+        className="invisible absolute h-0 overflow-hidden"
+      >
         {technologies.map((tech) => (
           <span
             key={tech}
@@ -193,7 +200,7 @@ const ProjectHeader = ({
 
       {/* Hover overlay */}
       <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-        <span className="text-white font-medium">View Project</span>
+        <span className="text-white font-medium">{viewProjectLabel}</span>
       </div>
     </div>
   );

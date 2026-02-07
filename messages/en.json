@@ -1,0 +1,166 @@
+{
+  "metadata": {
+    "title": "Barak Goren | Software Engineer",
+    "titleTemplate": "%s | Barak Goren",
+    "description": "Software engineer specializing in full-stack web development, mobile applications, and backend systems. Experienced with React, Node.js, TypeScript, and React Native.",
+    "ogSiteName": "Barak Goren Portfolio",
+    "ogImageAlt": "Barak Goren - Software Engineer"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "viewMyWork": "View My Work",
+    "getInTouch": "Get In Touch",
+    "scrollToExplore": "Scroll to explore"
+  },
+  "skills": {
+    "title": "Skills & Technologies",
+    "description": "A comprehensive toolkit built over years of hands-on experience with modern web, mobile, and backend technologies.",
+    "toolsIn": "{count} tools in {category}",
+    "letsTalk": "Let's talk",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "mobile": "Mobile",
+      "database": "Database",
+      "devops": "DevOps",
+      "other": "Other"
+    }
+  },
+  "projects": {
+    "title": "Latest Projects",
+    "description": "A selection of projects that showcase my expertise in building modern, scalable applications.",
+    "viewAllProjects": "View All Projects",
+    "viewProject": "View Project"
+  },
+  "experience": {
+    "title": "Experience",
+    "description": "My professional journey building impactful software solutions.",
+    "present": "Present"
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "description": "Have a project in mind or want to discuss opportunities? I'd love to hear from you.",
+    "letsConnect": "Let's Connect",
+    "connectDescription": "Whether you have a question, want to start a project, or just want to say hi, feel free to reach out. I'm always open to new opportunities and interesting conversations.",
+    "readyToStart": "Ready to start a project?",
+    "readyToStartDescription": "Let's discuss how I can help bring your ideas to life.",
+    "sendEmail": "Send me an email",
+    "downloadResume": "Download Resume"
+  },
+  "footer": {
+    "quickLinks": "Quick Links",
+    "connect": "Connect",
+    "allRightsReserved": "All rights reserved."
+  },
+  "notFound": {
+    "heading": "404",
+    "title": "Page Not Found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "goHome": "Go Home",
+    "goBack": "Go Back"
+  },
+  "aboutPage": {
+    "title": "About Me",
+    "technicalSkills": "Technical Skills",
+    "skillCategories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "mobile": "Mobile",
+      "database": "Database",
+      "devopsTools": "DevOps & Tools"
+    },
+    "workExperience": "Work Experience",
+    "ctaText": "Interested in working together? Let's connect!",
+    "getInTouch": "Get In Touch",
+    "downloadResume": "Download Resume"
+  },
+  "projectsPage": {
+    "title": "Projects Coming Soon",
+    "description": "I'm currently working on adding my projects to the portfolio. Stay tuned for updates!",
+    "goBackHome": "Go Back Home",
+    "contactMe": "Contact Me",
+    "featured": "Featured",
+    "otherProjects": "Other Projects",
+    "haveProjectInMind": "Have a project in mind?",
+    "haveProjectDescription": "Let's discuss how I can help bring your ideas to life.",
+    "getInTouch": "Get In Touch",
+    "liveDemo": "Live Demo",
+    "source": "Source",
+    "viewDetails": "View Details"
+  },
+  "projectDetail": {
+    "backToProjects": "Back to Projects",
+    "featured": "Featured",
+    "viewLiveDemo": "View Live Demo",
+    "viewSourceCode": "View Source Code",
+    "aboutThisProject": "About this project",
+    "technologiesUsed": "Technologies Used",
+    "projectType": "Project Type",
+    "development": "Development",
+    "interestedInSimilar": "Interested in similar work?",
+    "interestedDescription": "Let's discuss how I can help with your next project.",
+    "getInTouch": "Get In Touch",
+    "projectNotFound": "Project Not Found"
+  },
+  "personalInfo": {
+    "name": "Barak Goren",
+    "title": "Full Stack Developer (Front-end Focus)",
+    "location": "Mazkeret Batya, Israel",
+    "shortBio": "Full Stack Developer with strong front-end expertise, building scalable, production-grade web and mobile systems.",
+    "bio": "I'm a Full Stack Developer with a strong front-end focus, working in production environments across web and mobile.\n\nI specialize in React and Next.js with TypeScript, building maintainable component architectures, optimizing performance, and handling complex state at scale (Redux / Zustand). On the backend side, I build and maintain REST APIs and data flows, enforce runtime validation with Zod, and work hands-on with Prisma and relational databases (PostgreSQL / MariaDB) including schema design, migrations, and query optimization.\n\nI've shipped multiple live mobile app versions with major functional and architectural changes, implemented payments/subscriptions in production, and delivered features for large-scale systems serving hundreds of thousands of users.",
+    "jobTitle": "Software Engineer"
+  },
+  "data": {
+    "projects": {
+      "smart-ats-system": {
+        "title": "Smart ATS Platform (Next.js + CV API)",
+        "description": "Next.js App Router front-end with applicant comparisons, templates, and CV previews, powered by an Express/Mongo CV analysis API using GPT-4 and R2-backed uploads.",
+        "longDescription": "Built the Smart ATS platform end-to-end: a Next.js 15 UI with applicant workspaces, template library, multi-step dialogs, and responsive theming (light/dark).\nBacked by the Express/Mongo API that handles users, companies, applications, JWT auth, Swagger docs, GPT-4 CV parsing with PDF extraction, and Cloudflare R2 uploads (single/multi, signed URLs, health checks)."
+      },
+      "list-share": {
+        "title": "List-Share (Expo App + Realtime API)",
+        "description": "Expo Router mobile app with Google/Apple/email auth, realtime list collaboration, push notifications, and Cloudinary-backed media on a Prisma/Postgres API.",
+        "longDescription": "Built the List-Share product: Expo 54 (React Native 0.81, React 19) app with typed routes, NativeWind/NativeBase UI, Poppins-driven design, and socket.io-client realtime presence.\nAPI side: Express + Prisma/PostgreSQL with socket.io events, list sharing/roles, cron cleanup, JWT-protected routes, Google/Apple sign-in, Cloudinary uploads (single/multiple, visibility/profile), and API docs via Scalar/Swagger with privacy/support public pages."
+      },
+      "data-migration-ingestion": {
+        "title": "Data Migration: Scraping & Ingestion Pipeline",
+        "description": "Performed large-scale data scraping and ingestion to migrate substantial datasets into new database systems with complex transformations.",
+        "longDescription": "Implemented ingestion flows that handled data transformation, integrity constraints, and migration into new database schemas.\nFocused on correctness, consistency, and reliability under real-world messy data."
+      },
+      "pixel-perfect-ui": {
+        "title": "Pixel-Accurate UI Implementation",
+        "description": "Implemented pixel-perfect interfaces from detailed Figma designs, ensuring strict adherence to client requirements.",
+        "longDescription": "Delivered high-precision UI work across production applications, translating design specs into clean, maintainable components\nwhile keeping performance and scalability in mind."
+      }
+    },
+    "experiences": {
+      "exp-oversight": {
+        "role": "Full Stack Developer",
+        "description": "End-to-end feature development across web and mobile applications in production environments.",
+        "achievements": [
+          "Shipped multiple major app versions with functional and architectural changes to live mobile apps serving 2,000+ active users",
+          "Delivered complex features to production systems serving 300,000+ users and handling 1,000+ leads/month",
+          "Performed large-scale data scraping and ingestion to migrate substantial datasets into new database systems, including complex transformations and integrity constraints",
+          "Analyzed complex system and business logic issues directly with customers and designed technical solutions to meet requirements",
+          "Implemented pixel-accurate UI from detailed Figma designs with strict adherence to design requirements"
+        ]
+      },
+      "exp-oversight-1": {
+        "role": "QA Engineer",
+        "description": "Conducted manual testing and quality assurance for web systems and applications to ensure reliability and performance prior to production releases.",
+        "achievements": [
+          "Performed comprehensive manual testing on web systems and applications, including identification of complex issues.",
+          "Accurately documented bugs, reproduction steps, and impact analysis.",
+          "Collaborated closely with developers to validate fixes and ensure system stability prior to production releases.",
+          "Contributed to improving quality processes and reducing recurring issues."
+        ]
+      }
+    }
+  }
+}

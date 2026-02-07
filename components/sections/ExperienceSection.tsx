@@ -1,20 +1,26 @@
 "use client";
 
 import { Timeline } from "@/components/ui/Timeline";
-import { experiences } from "@/data/portfolio";
+import { experiencesStructural } from "@/data/portfolio";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export const ExperienceSection = () => {
-  const timelineData = experiences.map((exp) => ({
+  const t = useTranslations("experience");
+  const td = useTranslations("data.experiences");
+
+  const timelineData = experiencesStructural.map((exp) => ({
     title:
       exp.startDate +
-      (exp.endDate !== "Present" ? ` - ${exp.endDate}` : " - Present"),
+      (exp.endDate !== "Present"
+        ? ` - ${exp.endDate}`
+        : ` - ${t("present")}`),
     content: (
       <div className="space-y-4">
         <div className="space-y-1">
           <h4 className="text-xl md:text-2xl font-bold text-neutral-900 dark:text-white">
-            {exp.role}
+            {td(`${exp.id}.role`)}
           </h4>
           <div className="flex items-center gap-3 text-neutral-600 dark:text-neutral-400 text-lg">
             {exp.icon && (
@@ -32,20 +38,22 @@ export const ExperienceSection = () => {
           </div>
         </div>
         <p className="text-neutral-600 dark:text-neutral-300 text-sm md:text-base">
-          {exp.description}
+          {td(`${exp.id}.description`)}
         </p>
 
         {/* Achievements */}
         <ul className="space-y-2">
-          {exp.achievements.map((achievement, idx) => (
-            <li
-              key={idx}
-              className="flex items-start gap-2 text-neutral-600 dark:text-neutral-400 text-sm"
-            >
-              <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-blue-500 flex-shrink-0" />
-              {achievement}
-            </li>
-          ))}
+          {td
+            .raw(`${exp.id}.achievements`)
+            .map((achievement: string, idx: number) => (
+              <li
+                key={idx}
+                className="flex items-start gap-2 text-neutral-600 dark:text-neutral-400 text-sm"
+              >
+                <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-blue-500 flex-shrink-0" />
+                {achievement}
+              </li>
+            ))}
         </ul>
 
         {/* Technologies */}
@@ -74,10 +82,10 @@ export const ExperienceSection = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-neutral-700 to-neutral-400 dark:from-neutral-200 dark:to-neutral-500">
-            Experience
+            {t("title")}
           </h2>
           <p className="mt-4 text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-            My professional journey building impactful software solutions.
+            {t("description")}
           </p>
         </motion.div>
 

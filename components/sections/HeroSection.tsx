@@ -5,11 +5,15 @@ import { TextGenerateEffect } from "@/components/ui/TextGenerateEffect";
 import { Button } from "@/components/ui/MovingBorder";
 import { personalInfo } from "@/data/portfolio";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { BackgroundRippleEffect } from "../ui/background-ripple-effect";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 export const HeroSection = () => {
+  const t = useTranslations("hero");
+  const tp = useTranslations("personalInfo");
+
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-white dark:bg-black/[0.96] antialiased bg-grid-black/[0.02] dark:bg-grid-white/[0.02]">
       <Spotlight
@@ -35,17 +39,17 @@ export const HeroSection = () => {
             transition={{ delay: 0.2 }}
             className="text-neutral-500 dark:text-neutral-400 text-lg mb-4"
           >
-            Hi, I&apos;m
+            {t("greeting")}
           </motion.p>
 
           {/* Name */}
           <h1 className="text-4xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-600 dark:from-neutral-50 dark:to-neutral-400 bg-opacity-50">
-            {personalInfo.name}
+            {tp("name")}
           </h1>
 
           {/* Title */}
           <TextGenerateEffect
-            words={personalInfo.title}
+            words={tp("title")}
             className="text-xl md:text-3xl text-neutral-600 dark:text-neutral-300 mt-4"
           />
 
@@ -56,7 +60,7 @@ export const HeroSection = () => {
             transition={{ delay: 0.8 }}
             className="mt-6 text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto text-base md:text-lg"
           >
-            {personalInfo.shortBio}
+            {tp("shortBio")}
           </motion.p>
 
           {/* CTA Buttons */}
@@ -67,11 +71,11 @@ export const HeroSection = () => {
             className="flex flex-col sm:flex-row gap-4 mt-8"
           >
             <Link href="/projects">
-              <Button className="px-8 py-3">View My Work</Button>
+              <Button className="px-8 py-3">{t("viewMyWork")}</Button>
             </Link>
             <Link href="#contact">
               <Button variant="outline" className="px-8 py-3">
-                Get In Touch
+                {t("getInTouch")}
               </Button>
             </Link>
           </motion.div>
@@ -84,31 +88,31 @@ export const HeroSection = () => {
             className="flex gap-4 mt-8"
           >
             {personalInfo.socialLinks.github && (
-              <Link
+              <a
                 href={personalInfo.socialLinks.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-full bg-neutral-200 hover:bg-neutral-300 dark:bg-neutral-800 dark:hover:bg-neutral-700 transition-colors"
               >
                 <Github className="h-5 w-5 text-neutral-600 dark:text-neutral-300" />
-              </Link>
+              </a>
             )}
             {personalInfo.socialLinks.linkedin && (
-              <Link
+              <a
                 href={personalInfo.socialLinks.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-full bg-neutral-200 hover:bg-neutral-300 dark:bg-neutral-800 dark:hover:bg-neutral-700 transition-colors"
               >
                 <Linkedin className="h-5 w-5 text-neutral-600 dark:text-neutral-300" />
-              </Link>
+              </a>
             )}
-            <Link
+            <a
               href={`mailto:${personalInfo.email}`}
               className="p-2 rounded-full bg-neutral-200 hover:bg-neutral-300 dark:bg-neutral-800 dark:hover:bg-neutral-700 transition-colors"
             >
               <Mail className="h-5 w-5 text-neutral-600 dark:text-neutral-300" />
-            </Link>
+            </a>
           </motion.div>
         </motion.div>
       </div>
@@ -125,7 +129,7 @@ export const HeroSection = () => {
           transition={{ duration: 1.5, repeat: Infinity }}
           className="flex flex-col items-center gap-2 text-neutral-400 dark:text-neutral-500"
         >
-          <span className="text-sm">Scroll to explore</span>
+          <span className="text-sm">{t("scrollToExplore")}</span>
           <ArrowDown className="h-4 w-4" />
         </motion.div>
       </motion.div>
