@@ -16,7 +16,9 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   // Use the live domain so Open Graph resolves absolute asset URLs correctly.
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://www.barak-dev.com"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_BASE_URL || "https://www.barak-dev.com",
+  ),
   title: {
     default: "Barak Goren | Software Engineer",
     template: "%s | Barak Goren",
@@ -77,6 +79,18 @@ export const metadata: Metadata = {
   },
 };
 
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Barak Goren",
+  url: "https://www.barak-dev.com",
+  jobTitle: "Software Engineer",
+  sameAs: [
+    "https://www.linkedin.com/in/<your-handle>",
+    "https://github.com/<your-handle>",
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -95,6 +109,10 @@ export default function RootLayout({
         >
           {children}
         </ThemeProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
       </body>
     </html>
   );
