@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { projects } from "@/data/portfolio";
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://barakgoren.dev";
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.barak-dev.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const projectUrls = projects.map((project) => ({
