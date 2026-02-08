@@ -6,13 +6,7 @@
 export interface Skill {
   name: string;
   icon?: string;
-  category:
-    | "frontend"
-    | "backend"
-    | "mobile"
-    | "devops"
-    | "database"
-    | "other";
+  category: "frontend" | "backend" | "mobile" | "devops" | "database" | "other";
 }
 
 // ============================================
@@ -25,7 +19,7 @@ export const personalInfo = {
   resumeUrl: "/files/barak-goren-dev-2026.pdf",
   socialLinks: {
     github: "https://github.com/barakgoren",
-    linkedin: "https://linkedin.com/in/barakgoren",
+    linkedin: "https://www.linkedin.com/in/barakgoren/",
   },
 };
 

@@ -39,7 +39,7 @@ export async function generateMetadata({
 
   return {
     metadataBase: new URL(
-      process.env.NEXT_PUBLIC_BASE_URL || "https://www.barak-dev.com"
+      process.env.NEXT_PUBLIC_BASE_URL || "https://www.barak-dev.com",
     ),
     title: {
       default: t("title"),
@@ -122,7 +122,7 @@ export default async function LocaleLayout({ children, params }: Props) {
     url: "https://www.barak-dev.com",
     jobTitle: "Software Engineer",
     sameAs: [
-      "https://www.linkedin.com/in/barakgoren",
+      "https://www.linkedin.com/in/barakgoren/",
       "https://github.com/barakgoren",
     ],
   };
