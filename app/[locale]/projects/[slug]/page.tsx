@@ -4,15 +4,19 @@ import { projectsStructural, getProjectStructuralBySlug } from "@/data/portfolio
 import { getTranslations } from "next-intl/server";
 import { Navigation } from "@/components/sections/Navigation";
 import { ProjectDetailClient } from "@/components/projects/ProjectDetailClient";
+import { routing } from "@/i18n/routing";
 
 interface Props {
   params: Promise<{ slug: string; locale: string }>;
 }
 
 export async function generateStaticParams() {
-  return projectsStructural.map((project) => ({
-    slug: project.id,
-  }));
+  return routing.locales.flatMap((locale) =>
+    projectsStructural.map((project) => ({
+      locale,
+      slug: project.id,
+    }))
+  );
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
