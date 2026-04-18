@@ -58,6 +58,19 @@ export const skills: Skill[] = [
 // PROJECTS (structural data only)
 // Translatable fields (title, description, longDescription) come from messages JSON
 // ============================================
+export interface GalleryImageStructural {
+  id: string;
+  src: string;
+  section: string;
+}
+
+export interface ProjectContributor {
+  name: string;
+  role: string;
+  github?: string;
+  linkedin?: string;
+}
+
 export interface ProjectStructural {
   id: string;
   image?: string;
@@ -65,30 +78,64 @@ export interface ProjectStructural {
   liveUrl?: string;
   githubUrl?: string;
   featured: boolean;
-  category: "web" | "mobile" | "backend" | "fullstack";
+  category: "Web" | "Mobile" | "Backend" | "Full Stack" | "AI Full Stack";
+  gallery?: GalleryImageStructural[];
+  gallerySections?: string[];
+  techCategories?: {
+    frontend?: string[];
+    backend?: string[];
+    shared?: string[];
+    testing?: string[];
+  };
+  featureKeys?: string[];
+  contributors?: ProjectContributor[];
 }
 
 export const projectsStructural: ProjectStructural[] = [
   {
-    id: "smart-ats-system",
+    id: "claver-hr",
     image: "/images/smart-ats-hero.png",
     technologies: [
-      "Next.js",
-      "Express",
-      "Cloudflare R2",
-      "Scalar (OpenAPI/Swagger)",
-      "TypeScript",
-      "OpenAI GPT-4",
-      "SWR",
-      "React",
-      "Tailwind CSS",
-      "Zustand",
-      "MongoDB/Mongoose",
-      "Zod",
-      "JWT",
+      "Next.js 16", "React 19", "Tailwind CSS 4", "Radix UI",
+      "TanStack Query v5", "Recharts", "TypeScript 5",
+      "Express.js", "Prisma 7", "PostgreSQL", "JWT", "bcryptjs",
+      "Cloudflare R2", "Resend", "Handlebars", "Vitest", "Playwright", "Zod",
     ],
     featured: true,
-    category: "fullstack",
+    category: "AI Full Stack",
+    techCategories: {
+      frontend: ["Next.js 16", "React 19", "Tailwind CSS 4", "Radix UI", "TanStack Query v5", "Recharts"],
+      backend: ["Express.js", "Prisma 7", "PostgreSQL", "JWT + bcryptjs", "Cloudflare R2", "Resend", "Handlebars"],
+      shared: ["TypeScript 5", "Zod"],
+      testing: ["Vitest", "Playwright"],
+    },
+    featureKeys: [
+      "multiTenancy", "dynamicForms", "hiringPipeline",
+      "fileStorage", "email", "emailTemplates",
+      "jwtAuth", "aiAnalytics", "globalSearch", "csvExport",
+    ],
+    gallerySections: ["globals", "public", "roles", "applications", "analytics"],
+    gallery: [
+      { id: "global-search", src: "/projects-images/claver-hr/global-search.png", section: "globals" },
+      { id: "global-usage", src: "/projects-images/claver-hr/global-usage.png", section: "globals" },
+      { id: "plan-restrictions", src: "/projects-images/claver-hr/plan-restrictions.png", section: "globals" },
+      { id: "public-company-page", src: "/projects-images/claver-hr/public-company-page.png", section: "public" },
+      { id: "public-role-page", src: "/projects-images/claver-hr/public-role-page.png", section: "public" },
+      { id: "role-edit", src: "/projects-images/claver-hr/role-edit.png", section: "roles" },
+      { id: "role-piplines", src: "/projects-images/claver-hr/role-piplines.png", section: "roles" },
+      { id: "role-scoring", src: "/projects-images/claver-hr/role-scoring.png", section: "roles" },
+      { id: "applicant-page", src: "/projects-images/claver-hr/applicant-page.png", section: "applications" },
+      { id: "applicant-page-2", src: "/projects-images/claver-hr/applicant-page-2.png", section: "applications" },
+      { id: "ai-analyze-page", src: "/projects-images/claver-hr/ai-analyze-page.png", section: "analytics" },
+    ],
+    contributors: [
+      {
+        name: "Barak Goren",
+        role: "Full Stack Developer",
+        github: "https://github.com/barakgoren",
+        linkedin: "https://www.linkedin.com/in/barakgoren/",
+      },
+    ],
   },
   {
     id: "list-share",
@@ -112,22 +159,22 @@ export const projectsStructural: ProjectStructural[] = [
       "Swagger",
     ],
     featured: true,
-    category: "mobile",
+    category: "Mobile",
   },
-  {
-    id: "data-migration-ingestion",
-    image: "/projects/data-migration.jpg",
-    technologies: ["Node.js", "TypeScript", "Prisma", "PostgreSQL/MariaDB"],
-    featured: false,
-    category: "backend",
-  },
-  {
-    id: "pixel-perfect-ui",
-    image: "/projects/pixel-perfect-ui.jpg",
-    technologies: ["React", "Next.js", "TypeScript", "HTML/CSS"],
-    featured: false,
-    category: "web",
-  },
+  // {
+  //   id: "data-migration-ingestion",
+  //   image: "/projects/data-migration.jpg",
+  //   technologies: ["Node.js", "TypeScript", "Prisma", "PostgreSQL/MariaDB"],
+  //   featured: false,
+  //   category: "Backend",
+  // },
+  // {
+  //   id: "pixel-perfect-ui",
+  //   image: "/projects/pixel-perfect-ui.jpg",
+  //   technologies: ["React", "Next.js", "TypeScript", "HTML/CSS"],
+  //   featured: false,
+  //   category: "Web",
+  // },
 ];
 
 // ============================================
@@ -145,11 +192,19 @@ export interface ExperienceStructural {
 
 export const experiencesStructural: ExperienceStructural[] = [
   {
+    id: "exp-moveo",
+    company: "Moveo Group",
+    icon: "/logos/moveo-logo.svg",
+    startDate: "March 2026",
+    endDate: "Present",
+    technologies: [],
+  },
+  {
     id: "exp-oversight",
     company: "Oversight Group",
     icon: "/logos/oversight-logo.png",
     startDate: "October 2024",
-    endDate: "Present",
+    endDate: "March 2026",
     technologies: [
       "React",
       "Next.js",

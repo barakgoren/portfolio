@@ -8,12 +8,14 @@ import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
 import { useLayoutEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 
 export const ProjectsSection = () => {
-  const featuredProjects = getFeaturedProjectsStructural();
+  // Show max 2 on the homepage so the bento 3-col grid stays balanced
+  const featuredProjects = getFeaturedProjectsStructural().slice(0, 2);
   const t = useTranslations("projects");
   const td = useTranslations("data.projects");
+  const router = useRouter();
 
   return (
     <section className="py-10 bg-white dark:bg-black" id="projects">
@@ -48,6 +50,7 @@ export const ProjectsSection = () => {
                 />
               }
               className={i === 0 ? "md:col-span-2" : ""}
+              onClick={() => router.push(`/projects/${project.id}`)}
               icon={
                 <div className="flex gap-2 mt-2">
                   {project.liveUrl && (

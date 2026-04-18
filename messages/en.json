@@ -81,18 +81,21 @@
     "downloadResume": "Download Resume"
   },
   "projectsPage": {
-    "title": "Projects Coming Soon",
-    "description": "I'm currently working on adding my projects to the portfolio. Stay tuned for updates!",
+    "title": "Projects",
+    "description": "A showcase of things I've built — from full-stack web platforms to mobile apps and backend systems.",
     "goBackHome": "Go Back Home",
     "contactMe": "Contact Me",
     "featured": "Featured",
+    "featuredSection": "Full Stack",
     "otherProjects": "Other Projects",
     "haveProjectInMind": "Have a project in mind?",
     "haveProjectDescription": "Let's discuss how I can help bring your ideas to life.",
     "getInTouch": "Get In Touch",
     "liveDemo": "Live Demo",
     "source": "Source",
-    "viewDetails": "View Details"
+    "viewDetails": "View Details",
+    "allProjects": "All Projects",
+    "projectsCount": "{count} projects"
   },
   "projectDetail": {
     "backToProjects": "Back to Projects",
@@ -106,7 +109,29 @@
     "interestedInSimilar": "Interested in similar work?",
     "interestedDescription": "Let's discuss how I can help with your next project.",
     "getInTouch": "Get In Touch",
-    "projectNotFound": "Project Not Found"
+    "projectNotFound": "Project Not Found",
+    "sections": {
+      "overview": "Overview",
+      "techStack": "Tech Stack",
+      "contributors": "Contributors",
+      "description": "Description",
+      "gallery": "Gallery"
+    },
+    "techCategories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "shared": "Shared",
+      "testing": "Testing"
+    },
+    "gallery": {
+      "allSections": "All",
+      "imageCount": "{current} / {total}",
+      "prevImage": "Previous image",
+      "nextImage": "Next image"
+    },
+    "contributors": {
+      "builtBy": "Built by"
+    }
   },
   "personalInfo": {
     "name": "Barak Goren",
@@ -118,10 +143,108 @@
   },
   "data": {
     "projects": {
-      "smart-ats-system": {
-        "title": "Smart ATS Platform (Next.js + CV API)",
-        "description": "Next.js App Router front-end with applicant comparisons, templates, and CV previews, powered by an Express/Mongo CV analysis API using GPT-4 and R2-backed uploads.",
-        "longDescription": "Built the Smart ATS platform end-to-end: a Next.js 15 UI with applicant workspaces, template library, multi-step dialogs, and responsive theming (light/dark).\nBacked by the Express/Mongo API that handles users, companies, applications, JWT auth, Swagger docs, GPT-4 CV parsing with PDF extraction, and Cloudflare R2 uploads (single/multi, signed URLs, health checks)."
+      "claver-hr": {
+        "title": "Claver HR",
+        "description": "A full-stack, multi-tenant HR management platform for managing job openings and candidate applications — built with Next.js, Express, and PostgreSQL.",
+        "longDescription": "Claver HR lets companies publish job openings on a branded public page and track candidates through a fully customizable hiring pipeline.\n\nBuilt with Next.js 16 (App Router) and Express.js, it supports multi-tenancy, dynamic application forms, pipeline stage management, Cloudflare R2 file storage, Resend email integration, AI-powered applicant analytics, and automated test reporting.",
+        "overview": "A production-grade, multi-tenant HR platform built end-to-end. Companies get a branded job board and a powerful dashboard for managing hiring pipelines, applicant tracking, team communication, and AI-driven candidate insights.",
+        "features": {
+          "multiTenancy": {
+            "title": "Multi-Tenancy",
+            "description": "Each company has its own branded slug, job board, users, and fully isolated data."
+          },
+          "dynamicForms": {
+            "title": "Dynamic Application Forms",
+            "description": "Define custom form fields per role — text, textarea, select, file upload, and more."
+          },
+          "hiringPipeline": {
+            "title": "Customizable Hiring Pipeline",
+            "description": "Per-role configurable stages with full applicant progression history tracked on a timeline."
+          },
+          "fileStorage": {
+            "title": "Cloud File Storage",
+            "description": "Résumé uploads to Cloudflare R2 (S3-compatible), served via short-lived presigned URLs."
+          },
+          "email": {
+            "title": "Email Communication",
+            "description": "Send personalized emails to candidates directly from the platform via Resend, with full delivery history per application."
+          },
+          "emailTemplates": {
+            "title": "Reusable Email Templates",
+            "description": "Handlebars-powered templates with variable substitution for personalized, consistent messaging."
+          },
+          "jwtAuth": {
+            "title": "Secure JWT Authentication",
+            "description": "Access + refresh token pair with rotation on every use and secure HttpOnly cookie storage."
+          },
+          "aiAnalytics": {
+            "title": "AI-Powered Analytics",
+            "description": "Evaluate applicants with a customizable rubric, generate per-candidate strength/weakness reports, and get a pool-wide summary."
+          },
+          "globalSearch": {
+            "title": "Global Search",
+            "description": "Search across all system entities — roles, applications, users, email templates — with a single unified search bar."
+          },
+          "csvExport": {
+            "title": "CSV Export",
+            "description": "Export applications to CSV for external processing, reporting, or integration with other tools."
+          }
+        },
+        "gallery": {
+          "sections": {
+            "globals": "Global Features",
+            "public": "Public Views",
+            "roles": "Role Management",
+            "applications": "Applications",
+            "analytics": "AI Analytics"
+          },
+          "images": {
+            "global-search": {
+              "title": "Global Search",
+              "description": "A unified search bar that queries across all system entities — roles, applications, users, email templates, and more — from a single interface."
+            },
+            "global-usage": {
+              "title": "Superadmin Usage Dashboard",
+              "description": "The superadmin dashboard provides a bird's-eye view of infrastructure usage across all companies on the platform."
+            },
+            "plan-restrictions": {
+              "title": "Plan-Based Feature Restrictions",
+              "description": "Feature access is gated by subscription plan. Companies only see and interact with features available on their current plan."
+            },
+            "public-company-page": {
+              "title": "Public Job Board",
+              "description": "Each company gets a branded public job board at /[company-slug] where candidates can browse all open roles — no account required."
+            },
+            "public-role-page": {
+              "title": "Public Role Detail Page",
+              "description": "Candidates see a detailed role page with job requirements and a fully custom application form. Submissions are tracked without requiring an account."
+            },
+            "role-edit": {
+              "title": "Role Editor",
+              "description": "Admins can edit role requirements — used for display on the public page and as criteria for AI scoring — and configure custom application form fields per role."
+            },
+            "role-piplines": {
+              "title": "Pipeline Stage Management",
+              "description": "A visual pipeline editor where admins can add, reorder, and remove stages of the applicant progression flow for each role."
+            },
+            "role-scoring": {
+              "title": "Applicant Scoring System",
+              "description": "Systematically score applicants using configurable conditions: PDF keyword matching, form field value conditions, and custom scoring weights."
+            },
+            "applicant-page": {
+              "title": "Application Detail View",
+              "description": "Full application detail with candidate information, a stage progression timeline, and the complete email communication history."
+            },
+            "applicant-page-2": {
+              "title": "In-App Email Communication",
+              "description": "Admins can compose and send templated, personalized emails to candidates directly from the application page, with full delivery history tracked inline."
+            },
+            "ai-analyze-page": {
+              "title": "AI Analytics Report",
+              "description": "AI evaluates all applicants against a customizable rubric — generating individual strength/weakness reports and an overall candidate pool summary."
+            }
+          }
+        }
       },
       "list-share": {
         "title": "List-Share (Expo App + Realtime API)",
@@ -140,6 +263,11 @@
       }
     },
     "experiences": {
+      "exp-moveo": {
+        "role": "Full Stack Developer",
+        "description": "Full stack development at Moveo Group.",
+        "achievements": []
+      },
       "exp-oversight": {
         "role": "Full Stack Developer",
         "description": "End-to-end feature development across web and mobile applications in production environments.",
