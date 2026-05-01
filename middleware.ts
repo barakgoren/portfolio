@@ -8,9 +8,10 @@ export const config = {
   // - API routes
   // - Next.js internals (_next)
   // - Public files (assets, images, etc.)
+  // - /locify/* pages (standalone app legal pages)
   matcher: [
     "/",
     "/(he|en)/:path*",
-    "/((?!api|_next|_vercel|.*\\..*).*)",
+    "/((?!api|_next|_vercel|locify|.*\\..*).*)",
   ],
 };
