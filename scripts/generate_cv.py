@@ -13,6 +13,13 @@ pdfmetrics.registerFont(TTFont("LibSans", "/usr/share/fonts/truetype/liberation/
 pdfmetrics.registerFont(TTFont("LibSans-Bold", "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf"))
 pdfmetrics.registerFont(TTFont("LibSans-Italic", "/usr/share/fonts/truetype/liberation/LiberationSans-Italic.ttf"))
 pdfmetrics.registerFont(TTFont("LibSans-BoldItalic", "/usr/share/fonts/truetype/liberation/LiberationSans-BoldItalic.ttf"))
+pdfmetrics.registerFontFamily(
+    "LibSans",
+    normal="LibSans",
+    bold="LibSans-Bold",
+    italic="LibSans-Italic",
+    boldItalic="LibSans-BoldItalic",
+)
 
 BLUE = HexColor("#1F3864")
 BLACK = black
@@ -20,7 +27,7 @@ FONT = "LibSans"
 FONT_BOLD = "LibSans-Bold"
 FONT_ITALIC = "LibSans-Italic"
 FONT_BOLD_ITALIC = "LibSans-BoldItalic"
-BASE_SIZE = 9.5
+BASE_SIZE = 10
 
 def style(font=FONT, size=BASE_SIZE, color=BLACK, align=TA_LEFT, leading=None, space_before=0, space_after=0):
     return ParagraphStyle(
